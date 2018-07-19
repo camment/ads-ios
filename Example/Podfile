@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'CammentAds_Example' do
+  pod 'CammentAds', :path => '../'
+
+  target 'CammentAds_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+    pod 'Expecta'
+  end
+end
