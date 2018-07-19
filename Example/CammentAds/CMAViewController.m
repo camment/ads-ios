@@ -2,8 +2,8 @@
 //  CMAViewController.m
 //  CammentAds
 //
-//  Created by alexfedosov on 07/19/2018.
-//  Copyright (c) 2018 alexfedosov. All rights reserved.
+//  Created by Camment OY on 07/19/2018.
+//  Copyright (c) 2018 Camment OY. All rights reserved.
 //
 
 #import "CMAViewController.h"
