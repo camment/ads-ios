@@ -31,12 +31,8 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'CammentAds/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'CammentAds' => ['CammentAds/Assets/*.png']
-  # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.public_header_files = 'CammentAds/Classes/**/*{.h}'
+  s.frameworks = 'UIKit'
+  s.dependency 'AFNetworking', '~> 3'
 end

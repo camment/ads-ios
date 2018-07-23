@@ -6,10 +6,12 @@
 #import "CMAAPIService.h"
 #import "CMAShowMetadata.h"
 #import "CMABanner.h"
+#import "CMAUserIdentity.h"
 
 @interface CMACammentAds()
 
 @property (nonatomic, strong) CMAAPIService *apiService;
+@property (nonatomic, strong) CMAUserIdentity *userIdentity;
 
 @end
 
@@ -25,8 +27,23 @@
     return _sharedInstance;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.userIdentity = [CMAUserIdentity new];
+    }
+
+    return self;
+}
+
+- (void)configureWithBaseURL:(nonnull NSString *)baseURL apiKey:(nonnull NSString *)apiKey {
+    self.apiService = [[CMAAPIService alloc] initWithBaseURL:baseURL
+                                                userIdentity:_userIdentity
+                                                      apiKey:apiKey];
+}
+
 - (void)configureWithApiKey:(nonnull NSString *)apiKey {
-    self.apiService = [CMAAPIService serviceWithApiKey:apiKey];
+    [self configureWithBaseURL:nil apiKey:apiKey];
 }
 
 - (void)getPrerollBannerForShowWithMetadata:(CMAShowMetadata *)showMetadata

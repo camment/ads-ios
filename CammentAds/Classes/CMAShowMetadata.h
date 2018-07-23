@@ -13,4 +13,5 @@
 @property (nonatomic, assign) NSInteger length;
 @property (nonatomic, assign) BOOL isLive;
 
+- (NSDictionary *)JSONObject;
 @end

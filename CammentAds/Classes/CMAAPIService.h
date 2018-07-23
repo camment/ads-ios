@@ -5,13 +5,12 @@
 #import <Foundation/Foundation.h>
 #import "CMABannersServiceInterface.h"
 
+@class CMAUserIdentity;
 
 @interface CMAAPIService : NSObject <CMABannersServiceInterface>
 
-@property (nonatomic, strong, readonly, nonnull) NSString *apiKey;
+@property (nonatomic, weak, readonly) CMAUserIdentity *userIdentity;
 
-- (instancetype)initWithApiKey:(nonnull NSString *)apiKey;
-
-+ (instancetype)serviceWithApiKey:(nonnull NSString *)apiKey;
+- (instancetype)initWithBaseURL:(nonnull NSString *)baseURL userIdentity:(nonnull CMAUserIdentity *)userIdentity apiKey:(nonnull NSString *)apiKey;
 
 @end

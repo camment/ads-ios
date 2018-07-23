@@ -7,16 +7,17 @@
 
 @interface CMABanner : NSObject
 
+@property (nonatomic, strong, nonnull) NSString *uuid;
 @property (nonatomic, strong, nonnull) NSString *imageURL;
 @property (nonatomic, strong, nullable) NSString *redirectURL;
-@property (nonatomic, assign) NSTimeInterval *timeToShow;
+@property (nonatomic, assign) NSTimeInterval timeToShow;
 
-- (instancetype)initWithImageURL:(nonnull NSString *)imageURL
-                     redirectURL:(nullable NSString *)redirectURL
-                      timeToShow:(NSTimeInterval *)timeToShow;
+- (instancetype)initWithUuid:(nullable NSString *)uuid redirectURL:(nullable NSString *)redirectURL timeToShow:(NSTimeInterval)timeToShow imageURL:(nonnull NSString *)imageURL;
 
-+ (instancetype)bannerWithImageURL:(nonnull NSString *)imageURL
-                       redirectURL:(nullable NSString *)redirectURL
-                        timeToShow:(NSTimeInterval *)timeToShow;
+- (NSString *)description;
+
++ (instancetype)bannerWithUuid:(nullable NSString *)uuid redirectURL:(nullable NSString *)redirectURL timeToShow:(NSTimeInterval)timeToShow imageURL:(nonnull NSString *)imageURL;
+
++ (CMABanner *)bannerWithJSONData:(NSDictionary *)jsonDataObject;
 
 @end

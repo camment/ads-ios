@@ -1,5 +1,7 @@
 use_frameworks!
 
+platform :ios, '8.1'
+
 target 'CammentAds_Example' do
   pod 'CammentAds', :path => '../'
 
