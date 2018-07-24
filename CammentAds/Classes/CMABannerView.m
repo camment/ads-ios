@@ -31,7 +31,9 @@
         [_bannerImageView setImageWithURL:[[NSURL alloc] initWithString:_banner.imageURL]];
 
         [_bannerImageView setUserInteractionEnabled:YES];
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnBanner)];
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                initWithTarget:self
+                        action:@selector(handleTapOnBanner)];
         [_bannerImageView addGestureRecognizer:tapGestureRecognizer];
 
         [self addSubview:_bannerImageView];
@@ -50,7 +52,9 @@
     [super layoutSubviews];
 
     _bannerImageView.frame = self.bounds;
-    _bannerImageView.contentMode = (self.bounds.size.height > self.bounds.size.width) ? UIViewContentModeScaleAspectFit : UIViewContentModeScaleAspectFill;
+    _bannerImageView.contentMode = (self.bounds.size.height > self.bounds.size.width)
+                                            ? UIViewContentModeScaleAspectFit
+                                            : UIViewContentModeScaleAspectFill;
 }
 
 - (void)didMoveToSuperview {

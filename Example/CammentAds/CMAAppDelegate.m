@@ -13,8 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[CMACammentAds sharedInstance] configureWithBaseURL:@"https://dev-api.camment.tv"
-                                                  apiKey:@"iYeooUSdMZ8FOBMZeL2zb9YDLdW0uvbVlitykh7d"];
+    [[CMACammentAds sharedInstance] configureWithApiKey:@""];
 
     return YES;
 }

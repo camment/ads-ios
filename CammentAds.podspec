@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CammentAds'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of CammentAds.'
+  s.version          = '1.0.0'
+  s.summary          = 'CammentAds SDK'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+CammentAds provides api for displaying ads banners via Camment platform.
                        DESC
 
-  s.homepage         = 'https://github.com/Camment OY/CammentAds'
+  s.homepage         = 'https://github.com/camment/CammentAds'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Camment OY' => 'alex@camment.tv' }

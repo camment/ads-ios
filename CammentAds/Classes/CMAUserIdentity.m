@@ -16,9 +16,9 @@
     if (self) {
 
         if (!uuid) {
-            self.uuid = [self generateNewIdentity];
+            _uuid = [self generateNewIdentity];
         } else {
-            self.uuid = uuid;
+            _uuid = uuid;
         }
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -30,10 +30,6 @@
     return self;
 }
 
-+ (instancetype)identityWithUuid:(NSString *)uuid {
-    return [[self alloc] initWithUuid:uuid];
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 };
@@ -41,7 +37,7 @@
 - (void)userIdHasChanged:(NSNotification *)aNotification {
     NSString *uuid = [aNotification.userInfo valueForKey:@"uuid"];
     if (!uuid) { return; }
-    self.uuid = uuid;
+    _uuid = uuid;
 }
 
 - (NSString *)generateNewIdentity {

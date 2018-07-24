@@ -7,19 +7,11 @@
 
 @implementation CMABanner
 
-- (instancetype)initWithUuid:(nullable NSString *)uuid redirectURL:(nullable NSString *)redirectURL timeToShow:(NSTimeInterval)timeToShow imageURL:(nonnull NSString *)imageURL {
-    self = [super init];
-    if (self) {
-        self.uuid = uuid;
-        self.imageURL = imageURL;
-        self.redirectURL = redirectURL;
-        self.timeToShow = timeToShow;
-    }
-
-    return self;
-}
-
-+ (instancetype)bannerWithUuid:(nullable NSString *)uuid redirectURL:(nullable NSString *)redirectURL timeToShow:(NSTimeInterval)timeToShow imageURL:(nonnull NSString *)imageURL {
++ (instancetype)bannerWithUuid:(nullable NSString *)uuid
+                   redirectURL:(nullable NSString *)redirectURL
+                    timeToShow:(NSTimeInterval)timeToShow
+                      imageURL:(nonnull NSString *)imageURL
+{
     return [[self alloc] initWithUuid:uuid redirectURL:redirectURL timeToShow:timeToShow imageURL:imageURL];
 }
 
@@ -37,6 +29,22 @@
                          redirectURL:redirectUrl
                           timeToShow:[timeToShow doubleValue]
                             imageURL:imageURL];
+}
+
+- (instancetype)initWithUuid:(nullable NSString *)uuid
+                 redirectURL:(nullable NSString *)redirectURL
+                  timeToShow:(NSTimeInterval)timeToShow
+                    imageURL:(nonnull NSString *)imageURL
+{
+    self = [super init];
+    if (self) {
+        self.uuid = uuid;
+        self.imageURL = imageURL;
+        self.redirectURL = redirectURL;
+        self.timeToShow = timeToShow;
+    }
+
+    return self;
 }
 
 - (NSString *)description {

@@ -11,11 +11,8 @@ static NSString *const kCammentAdsUserIdHasChangedNotification = @"kCammentAdsUs
 
 @interface CMAUserIdentity : NSObject
 
-@property (nonatomic, strong) NSString *uuid;
+@property (nonnull, nonatomic, strong, readonly) NSString *uuid;
 
 - (instancetype)initWithUuid:(NSString *)uuid;
-
-+ (instancetype)identityWithUuid:(NSString *)uuid;
-
 
 @end

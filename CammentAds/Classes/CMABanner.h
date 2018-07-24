@@ -12,12 +12,16 @@
 @property (nonatomic, strong, nullable) NSString *redirectURL;
 @property (nonatomic, assign) NSTimeInterval timeToShow;
 
-- (instancetype)initWithUuid:(nullable NSString *)uuid redirectURL:(nullable NSString *)redirectURL timeToShow:(NSTimeInterval)timeToShow imageURL:(nonnull NSString *)imageURL;
-
-- (NSString *)description;
-
-+ (instancetype)bannerWithUuid:(nullable NSString *)uuid redirectURL:(nullable NSString *)redirectURL timeToShow:(NSTimeInterval)timeToShow imageURL:(nonnull NSString *)imageURL;
++ (instancetype)bannerWithUuid:(nullable NSString *)uuid
+                   redirectURL:(nullable NSString *)redirectURL
+                    timeToShow:(NSTimeInterval)timeToShow
+                      imageURL:(nonnull NSString *)imageURL;
 
 + (CMABanner *)bannerWithJSONData:(NSDictionary *)jsonDataObject;
+
+- (instancetype)initWithUuid:(nullable NSString *)uuid
+                 redirectURL:(nullable NSString *)redirectURL
+                  timeToShow:(NSTimeInterval)timeToShow
+                    imageURL:(nonnull NSString *)imageURL;
 
 @end
