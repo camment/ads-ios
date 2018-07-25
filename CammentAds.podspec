@@ -25,7 +25,7 @@ CammentAds provides api for displaying ads banners via Camment platform.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Camment OY' => 'alex@camment.tv' }
-  s.source           = { :git => 'https://github.com/camment/CammentAds.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/camment/ads-ios', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
