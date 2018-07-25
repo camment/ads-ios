@@ -57,11 +57,13 @@
 
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
+    
+    if (!self.superview) { return; }
+    
     __weak typeof(self) _weakSelf = self;
     if (self.timer && [self.timer isValid]) {
         [self.timer invalidate];
     }
-
     self.timer = [NSTimer scheduledTimerWithTimeInterval:_banner.timeToShow
                                                   target:_weakSelf
                                                 selector:@selector(handleTimerEvent)
