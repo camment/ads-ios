@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CammentAds'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'CammentAds SDK'
 
 # This description is used to generate tags and improve search results.
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 CammentAds provides api for displaying ads banners via Camment platform.
                        DESC
 
-  s.homepage         = 'https://github.com/camment/CammentAds'
+  s.homepage         = 'https://github.com/camment/ads-ios'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Camment OY' => 'alex@camment.tv' }
