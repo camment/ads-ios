@@ -11,6 +11,6 @@
 
 @property (nonnull, nonatomic, strong, readonly) CMABanner *banner;
 
-- (instancetype)initWithBanner:(CMABanner *)banner bannerDeletionBlock:(void (^)())bannerDeletionBlock;
+- (instancetype)initWithBanner:(CMABanner *)banner bannerDeletionBlock:(void (^)(void))bannerDeletionBlock;
 
 @end

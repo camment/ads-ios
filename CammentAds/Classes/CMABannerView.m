@@ -11,15 +11,13 @@
 
 @property (nonnull, nonatomic, strong) UIImageView *bannerImageView;
 @property (nonatomic, strong) NSTimer *timer;
-@property(nonatomic, copy) void (^bannerDeletionBlock)();
-
-- (instancetype)initWithBanner:(CMABanner *)banner bannerDeletionBlock:(void (^)())block;
+@property(nonatomic, copy) void (^bannerDeletionBlock)(void);
 
 @end
 
 @implementation CMABannerView
 
-- (instancetype)initWithBanner:(CMABanner *)banner bannerDeletionBlock:(void (^)())bannerDeletionBlock {
+- (instancetype)initWithBanner:(CMABanner *)banner bannerDeletionBlock:(void (^)(void))bannerDeletionBlock {
     self = [super init];
     if (self) {
         _banner = banner;

@@ -13,7 +13,7 @@ static const int kCammentAdsErrorNotConfigured = -400;
 
 + (instancetype)sharedInstance;
 
-- (void)configureWithBaseURL:(nonnull NSString *)baseURL apiKey:(nonnull NSString *)apiKey;
+- (void)configureWithBaseURL:(nullable NSString *)baseURL apiKey:(nonnull NSString *)apiKey;
 
 - (void)configureWithApiKey:(nonnull NSString *)apiKey;
 

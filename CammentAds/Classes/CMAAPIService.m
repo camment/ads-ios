@@ -14,7 +14,7 @@ static NSString *const kCammentAdsAPIDomain = @"https://api.camment.tv";
     AFHTTPSessionManager *_httpSessionManager;
 }
 
-- (instancetype)initWithBaseURL:(nonnull NSString *)baseURL userIdentity:(nonnull CMAUserIdentity *)userIdentity apiKey:(nonnull NSString *)apiKey {
+- (instancetype)initWithBaseURL:(nullable NSString *)baseURL userIdentity:(nonnull CMAUserIdentity *)userIdentity apiKey:(nonnull NSString *)apiKey {
     self = [super init];
     if (self) {
         _userIdentity = userIdentity;

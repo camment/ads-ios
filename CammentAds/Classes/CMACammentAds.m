@@ -36,7 +36,7 @@
     return self;
 }
 
-- (void)configureWithBaseURL:(nonnull NSString *)baseURL apiKey:(nonnull NSString *)apiKey {
+- (void)configureWithBaseURL:(nullable NSString *)baseURL apiKey:(nonnull NSString *)apiKey {
     self.apiService = [[CMAAPIService alloc] initWithBaseURL:baseURL
                                                 userIdentity:_userIdentity
                                                       apiKey:apiKey];

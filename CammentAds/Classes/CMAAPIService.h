@@ -11,7 +11,7 @@
 
 @property (nonatomic, weak, readonly) CMAUserIdentity *userIdentity;
 
-- (instancetype)initWithBaseURL:(nonnull NSString *)baseURL
+- (instancetype)initWithBaseURL:(nullable NSString *)baseURL
                    userIdentity:(nonnull CMAUserIdentity *)userIdentity
                          apiKey:(nonnull NSString *)apiKey;
 
