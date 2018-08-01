@@ -72,6 +72,7 @@
     _bannerImageView.contentMode = (self.bounds.size.height > self.bounds.size.width)
                                             ? UIViewContentModeScaleAspectFit
                                             : UIViewContentModeScaleAspectFill;
+    _spinner.center = self.center;
 }
 
 - (void)didMoveToSuperview {
