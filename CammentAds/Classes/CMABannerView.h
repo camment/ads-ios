@@ -10,6 +10,7 @@
 @interface CMABannerView: UIView
 
 @property (nonnull, nonatomic, strong, readonly) CMABanner *banner;
+@property UIActivityIndicatorView *spinner;
 
 - (instancetype)initWithBanner:(CMABanner *)banner bannerDeletionBlock:(void (^)(void))bannerDeletionBlock;
 
