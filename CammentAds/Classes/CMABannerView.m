@@ -12,6 +12,7 @@
 @property (nonnull, nonatomic, strong) UIImageView *bannerImageView;
 @property (nonatomic, strong) NSTimer *timer;
 @property(nonatomic, copy) void (^bannerDeletionBlock)(void);
+@property UIActivityIndicatorView *spinner;
 
 @end
 
@@ -26,7 +27,30 @@
         _bannerImageView = [UIImageView new];
         _bannerImageView.backgroundColor = [UIColor blackColor];
         _bannerImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [_bannerImageView setImageWithURL:[[NSURL alloc] initWithString:_banner.imageURL]];
+        _bannerImageView.hidden = YES;
+        
+        _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _spinner.color = UIColor.grayColor;
+        [_spinner setHidden:NO];
+        [self addSubview:_spinner];
+        [_spinner startAnimating];
+        
+        [_bannerImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:(NSString *)_banner.imageURL]]
+                                placeholderImage:nil
+                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                             NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
+                                             
+                                             self.bannerImageView.hidden = NO;
+                                             
+                                             [self.spinner stopAnimating];
+                                             
+                                             [self.bannerImageView setImage: image];
+                                         }
+                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                             NSLog(@"failed loading: %@", error);
+                                             [self.spinner stopAnimating];
+                                         }];
+
 
         [_bannerImageView setUserInteractionEnabled:YES];
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]
@@ -53,6 +77,8 @@
     _bannerImageView.contentMode = (self.bounds.size.height > self.bounds.size.width)
                                             ? UIViewContentModeScaleAspectFit
                                             : UIViewContentModeScaleAspectFill;
+    
+    _spinner.center = self.center;
 }
 
 - (void)didMoveToSuperview {
