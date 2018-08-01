@@ -11,8 +11,8 @@
 
 @property (nonnull, nonatomic, strong) UIImageView *bannerImageView;
 @property (nonatomic, strong) NSTimer *timer;
-@property(nonatomic, copy) void (^bannerDeletionBlock)(void);
-@property UIActivityIndicatorView *spinner;
+@property (nonatomic, copy) void (^bannerDeletionBlock)(void);
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 
 @end
 
@@ -34,21 +34,22 @@
         [_spinner setHidden:NO];
         [self addSubview:_spinner];
         [_spinner startAnimating];
-        
+
+        __weak CMABannerView * _weakSelf = self;
         [_bannerImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:(NSString *)_banner.imageURL]]
                                 placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                              NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
+                                             if (!_weakSelf) { return; }
                                              
-                                             self.bannerImageView.hidden = NO;
+                                             [_weakSelf.spinner stopAnimating];
                                              
-                                             [self.spinner stopAnimating];
-                                             
-                                             [self.bannerImageView setImage: image];
+                                             _weakSelf.bannerImageView.hidden = NO;
+                                             [_weakSelf.bannerImageView setImage:image];
                                          }
                                          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                              NSLog(@"failed loading: %@", error);
-                                             [self.spinner stopAnimating];
+                                             [_weakSelf.spinner stopAnimating];
                                          }];
 
 
