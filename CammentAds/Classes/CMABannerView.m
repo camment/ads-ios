@@ -12,6 +12,7 @@
 @property (nonnull, nonatomic, strong) UIImageView *bannerImageView;
 @property (nonatomic, strong) NSTimer *timer;
 @property(nonatomic, copy) void (^bannerDeletionBlock)(void);
+@property UIActivityIndicatorView *spinner;
 
 @end
 
@@ -27,8 +28,9 @@
         _bannerImageView.backgroundColor = [UIColor blackColor];
         _bannerImageView.contentMode = UIViewContentModeScaleAspectFill;
         _bannerImageView.hidden = YES;
+        
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        _spinner.color = UIColor.redColor;
+        _spinner.color = UIColor.grayColor;
         [_spinner setHidden:NO];
         [self addSubview:_spinner];
         [_spinner startAnimating];
@@ -37,8 +39,11 @@
                                 placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                              NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
+                                             
                                              self.bannerImageView.hidden = NO;
+                                             
                                              [self.spinner stopAnimating];
+                                             
                                              [self.bannerImageView setImage: image];
                                          }
                                          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -72,6 +77,7 @@
     _bannerImageView.contentMode = (self.bounds.size.height > self.bounds.size.width)
                                             ? UIViewContentModeScaleAspectFit
                                             : UIViewContentModeScaleAspectFill;
+    
     _spinner.center = self.center;
 }
 
