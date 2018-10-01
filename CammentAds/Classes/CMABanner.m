@@ -9,39 +9,42 @@
 
 + (instancetype)bannerWithUuid:(nullable NSString *)uuid
                    redirectURL:(nullable NSString *)redirectURL
-                    timeToShow:(NSTimeInterval)timeToShow
-                      imageURL:(nonnull NSString *)imageURL
+                    prerollDuration:(NSTimeInterval)prerollDuration
+                      prerollAssetUrl:(nonnull NSString *)prerollAssetUrl
 {
-    return [[self alloc] initWithUuid:uuid redirectURL:redirectURL timeToShow:timeToShow imageURL:imageURL];
+    return [[self alloc] initWithUuid:uuid
+                          redirectURL:redirectURL
+                      prerollDuration:prerollDuration
+                      prerollAssetUrl:prerollAssetUrl];
 }
 
 + (CMABanner *)bannerWithJSONData:(NSDictionary *)jsonDataObject {
     NSString *uuid = jsonDataObject[@"uuid"];
-    NSString *imageURL = jsonDataObject[@"imageUrl"];
+    NSString *prerollAssetUrl = jsonDataObject[@"prerollAssetUrl"];
     NSString *redirectUrl = jsonDataObject[@"redirectUrl"];
-    NSNumber *timeToShow = jsonDataObject[@"timeToShow"];
+    NSNumber *prerollDuration = jsonDataObject[@"prerollDuration"];
 
-    if (!imageURL) {
+    if (!prerollAssetUrl) {
         return nil;
     }
 
     return [CMABanner bannerWithUuid:uuid
                          redirectURL:redirectUrl
-                          timeToShow:[timeToShow doubleValue]
-                            imageURL:imageURL];
+                          prerollDuration:[prerollDuration doubleValue]
+                            prerollAssetUrl:prerollAssetUrl];
 }
 
 - (instancetype)initWithUuid:(nullable NSString *)uuid
                  redirectURL:(nullable NSString *)redirectURL
-                  timeToShow:(NSTimeInterval)timeToShow
-                    imageURL:(nonnull NSString *)imageURL
+                  prerollDuration:(NSTimeInterval)prerollDuration
+                    prerollAssetUrl:(nonnull NSString *)prerollAssetUrl
 {
     self = [super init];
     if (self) {
         self.uuid = uuid;
-        self.imageURL = imageURL;
+        self.prerollAssetUrl = prerollAssetUrl;
         self.redirectURL = redirectURL;
-        self.timeToShow = timeToShow;
+        self.prerollDuration = prerollDuration;
     }
 
     return self;
@@ -49,10 +52,10 @@
 
 - (NSString *)description {
     NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
-    [description appendFormat:@"self.uuid=%@", self.uuid];
-    [description appendFormat:@", self.imageURL=%@", self.imageURL];
+    [description appendFormat:@"  self.uuid=%@", self.uuid];
+    [description appendFormat:@", self.prerollAssetUrl=%@", self.prerollAssetUrl];
     [description appendFormat:@", self.redirectURL=%@", self.redirectURL];
-    [description appendFormat:@", self.timeToShow=%lf", self.timeToShow];
+    [description appendFormat:@", self.prerollDuration=%lf", self.prerollDuration];
     [description appendString:@">"];
     return description;
 }

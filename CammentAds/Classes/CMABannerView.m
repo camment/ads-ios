@@ -31,27 +31,7 @@
         
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _spinner.color = UIColor.grayColor;
-        [_spinner setHidden:NO];
         [self addSubview:_spinner];
-        [_spinner startAnimating];
-
-        __weak CMABannerView * _weakSelf = self;
-        [_bannerImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:(NSString *)_banner.imageURL]]
-                                placeholderImage:nil
-                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                             NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
-                                             if (!_weakSelf) { return; }
-                                             
-                                             [_weakSelf.spinner stopAnimating];
-                                             
-                                             _weakSelf.bannerImageView.hidden = NO;
-                                             [_weakSelf.bannerImageView setImage:image];
-                                         }
-                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                             NSLog(@"failed loading: %@", error);
-                                             [_weakSelf.spinner stopAnimating];
-                                         }];
-
 
         [_bannerImageView setUserInteractionEnabled:YES];
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]
@@ -87,11 +67,33 @@
     
     if (!self.superview) { return; }
     
+    __weak CMABannerView * _weakSelf = self;
+    [_weakSelf.spinner startAnimating];
+    [_bannerImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:(NSString *)_banner.prerollAssetUrl]]
+                            placeholderImage:nil
+                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                         NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
+                                         if (!_weakSelf) { return; }
+                                         
+                                         [_weakSelf.spinner stopAnimating];
+                                         [_weakSelf.spinner removeFromSuperview];
+                                         
+                                         _weakSelf.bannerImageView.hidden = NO;
+                                         [_weakSelf.bannerImageView setImage:image];
+                                         
+                                         [_weakSelf activateTimer];
+                                     }
+                                     failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                         NSLog(@"failed loading: %@", error);
+                                         [_weakSelf.spinner stopAnimating];
+                                         [_weakSelf.spinner removeFromSuperview];
+                                     }];
+}
+
+- (void)activateTimer {
+    
     __weak typeof(self) _weakSelf = self;
-    if (self.timer && [self.timer isValid]) {
-        [self.timer invalidate];
-    }
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:_banner.timeToShow
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:_banner.prerollDuration
                                                   target:_weakSelf
                                                 selector:@selector(handleTimerEvent)
                                                 userInfo:nil

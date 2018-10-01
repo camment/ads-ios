@@ -8,20 +8,20 @@
 @interface CMABanner : NSObject
 
 @property (nonatomic, strong, nonnull) NSString *uuid;
-@property (nonatomic, strong, nonnull) NSString *imageURL;
+@property (nonatomic, strong, nonnull) NSString *prerollAssetUrl;
 @property (nonatomic, strong, nullable) NSString *redirectURL;
-@property (nonatomic, assign) NSTimeInterval timeToShow;
+@property (nonatomic, assign) NSTimeInterval prerollDuration;
 
 + (instancetype)bannerWithUuid:(nullable NSString *)uuid
                    redirectURL:(nullable NSString *)redirectURL
-                    timeToShow:(NSTimeInterval)timeToShow
-                      imageURL:(nonnull NSString *)imageURL;
+                    prerollDuration:(NSTimeInterval)prerollDuration
+                      prerollAssetUrl:(nonnull NSString *)prerollAssetUrl;
 
 + (CMABanner *)bannerWithJSONData:(NSDictionary *)jsonDataObject;
 
 - (instancetype)initWithUuid:(nullable NSString *)uuid
                  redirectURL:(nullable NSString *)redirectURL
-                  timeToShow:(NSTimeInterval)timeToShow
-                    imageURL:(nonnull NSString *)imageURL;
+                  prerollDuration:(NSTimeInterval)prerollDuration
+                    prerollAssetUrl:(nonnull NSString *)prerollAssetUrl;
 
 @end
